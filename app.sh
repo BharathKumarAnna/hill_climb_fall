@@ -5,8 +5,6 @@ function roll_dice() {
     echo $dice_no
 }
 
-
-
 function sum() {
 local arr=("$@")
 local sum_arr=0
@@ -23,9 +21,19 @@ echo $sum_arr
 #echo "sum is : $sum_ans"
 
 echo "					🚩🚩🚩   Hill Climb Fall   🚩🚩🚩" 
+
+echo "Toss Time..."
+toss=$(roll_dice)
+echo "Toss result : $toss"
+if (( toss%2==0 )); then
+	echo "Since we got $toss,an even number : Player A starts"
+	i=0
+else
+	echo "Since we got $toss,and odd number: Player B starts"
+	i=1
+fi
 a=()
 b=()
-i=0
 sum_a=0
 sum_b=0
 while (( $sum_a!=10 && $sum_b!=10 ))
