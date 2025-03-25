@@ -2,12 +2,9 @@
 
 function roll_dice() {
     dice_no=$(( (RANDOM % 6) + 1 ))
-    return $dice_no
+    echo $dice_no
 }
 
-roll_dice
-dice_ans=$?
-#echo "dice no : $dice_ans"
 
 
 function sum() {
@@ -17,8 +14,7 @@ for (( i=0;i<${#arr[@]};i++ ))
 do
 	sum_arr=$((sum_arr + arr[i]))
 done
-
-return $sum_arr
+echo $sum_arr
 }
 
 #p=(1 2 3)
@@ -30,59 +26,49 @@ echo "					🚩🚩🚩   Hill Climb Fall   🚩🚩🚩"
 a=()
 b=()
 i=0
-sum "${a[@]}"
-sum_a=$?
-sum "${b[@]}"
-sum_b=$?
-while (($sum_a!=10 && $sum_b!=10))
+sum_a=0
+sum_b=0
+while (( $sum_a!=10 && $sum_b!=10 ))
 do
-	if (( $sum_a<10 && i%2==0 )); then
+	if (( sum_a<10 && i%2==0 )); then
 		echo "Player A turn"
-		read -p "enter p to play" ch
+		read -p "enter p to play: " ch
 		if (( ch==p )); then
-			throw=$dice_ans
-			a+=($dice_ans)
-			echo "step no: $sum_a"
-		(( i+= 1 ))
+			throw=$(roll_dice)
+			echo "A rolled: $throw"
+			((a+=$throw))
+			sum_a=$(sum "${a[@]}")
+			echo "step no of A: $sum_a"
+			if ((sum_a>10 )); then
+				echo "A falls back to step 0"
+				a=()
+				sum_a=0
+			fi
+		(( i+=1 ))
 		fi
 	elif (( $sum_b<10 && i%2!=0 )); then
                 echo "Player B turn"
-                read -p "enter p to play" ch
+                read -p "enter p to play: " ch
                 if (( ch==p )); then
-                        throw=$dice_ans
-                        b+=($dice_ans)
-                        echo "step no: $sum_b"
+			throw=$(roll_dice)
+			echo "B rolled: $throw"
+			((b+=$throw))
+			sum_b=$(sum "${b[@]}")
+			echo "step no of B : $sum_b"
+			if (( sum_b>10 )); then
+				echo "B falls back to step 0"
+				b=()
+				sum_b=0
+			fi
                 (( i+= 1 ))
 		fi
-	elif (( $sum_a > 10 )); then
-		a=()
-	elif (( $sum_b > 10 )); then
-		b=()
-	else
-		echo "Nothing"
 	fi
+	
         
 done
 
-if (($sum_a==10)); then
+if ((sum_a==10)); then
 	echo "Player A is the Winner..."
 else
 	echo "Player B is the Winner..."
 fi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
