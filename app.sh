@@ -15,15 +15,21 @@ done
 echo $sum_arr
 }
 
-#p=(1 2 3)
-#sum "${p[@]}"
-#sum_ans=$?
-#echo "sum is : $sum_ans"
 
 echo "					🚩🚩🚩   Hill Climb Fall   🚩🚩🚩" 
 
 echo "Toss Time..."
-toss=$(roll_dice)
+while true; do
+    read -p "Press 'f' to flip the coin: " f
+    if [[ "$f" == "f" ]]; then
+        toss=$(roll_dice)
+        break
+    else
+        echo "Invalid input! Please press 'f' to flip the coin."
+    fi
+done
+
+
 echo "Toss result : $toss"
 if (( toss%2==0 )); then
 	echo "Since we got $toss,an even number : Player A starts"
@@ -41,7 +47,7 @@ do
 	if (( sum_a<10 && i%2==0 )); then
 		echo "Player A turn"
 		read -p "enter p to play: " ch
-		if (( ch==p )); then
+		if [[ "$ch" == "p" ]]; then
 			throw=$(roll_dice)
 			echo "A rolled: $throw"
 			((a+=$throw))
@@ -57,7 +63,7 @@ do
 	elif (( $sum_b<10 && i%2!=0 )); then
                 echo "Player B turn"
                 read -p "enter p to play: " ch
-                if (( ch==p )); then
+                if [[ "$ch" == "p" ]]; then
 			throw=$(roll_dice)
 			echo "B rolled: $throw"
 			((b+=$throw))
