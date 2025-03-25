@@ -62,6 +62,7 @@ function print_dice() {
     esac
 }
 
+<<<<<<< HEAD
 echo "                                  🚩🚩🚩   Hill Climb Fall   🚩🚩🚩"
 
 # 🔄 Loop until the user presses 'f' to flip the coin
@@ -82,6 +83,54 @@ if (( toss % 2 == 0 )); then
 else
     echo "Since we got $toss, an odd number: Player B starts"
     i=1
+=======
+dialog --msgbox "🚩🚩🚩   Hill Climb Fall   🚩🚩🚩" 10 40
+a=()
+b=()
+i=0
+sum "${a[@]}"
+sum_a=$?
+sum "${b[@]}"
+sum_b=$?
+while (($sum_a!=10 && $sum_b!=10))
+do
+	if (( $sum_a<10 && i%2==0 )); then
+		echo "Player A turn"
+		ch=$(dialog --inputbox "Enter 'p' to play:" 10 40 3>&1 1>&2 2>&3)
+		if (( ch==p )); then
+			throw=$dice_ans
+			a+=($dice_ans)
+			dialog --msgbox "A rolled: $throw" 10 40
+			echo "step no: $sum_a"
+		(( i+= 1 ))
+		fi
+	elif (( $sum_b<10 && i%2!=0 )); then
+                echo "Player B turn"
+		ch=$(dialog --inputbox "Enter 'p' to play:" 10 40 3>&1 1>&2 2>&3)
+                if (( ch==p )); then
+                        throw=$dice_ans
+                        b+=($dice_ans)
+			dialog --msgbox "A rolled: $throw" 10 40
+                        echo "step no: $sum_b"
+                (( i+= 1 ))
+		fi
+	elif (( $sum_a > 10 )); then
+		a=()
+	elif (( $sum_b > 10 )); then
+		b=()
+	else
+		echo "Nothing"
+	fi
+        
+done
+
+if (($sum_a==10)); then
+	dialog --msgbox "🎉 Player A is the Winner! 🎉" 10 40
+
+else
+	dialog --msgbox "🎉 Player B is the Winner! 🎉" 10 40
+
+>>>>>>> 80891ed (added dialogue package for animation GUI)
 fi
 
 a=()
