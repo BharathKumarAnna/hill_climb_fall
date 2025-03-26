@@ -17,58 +17,67 @@ function sum_array() {
 
 
 
-# Function to print dice face
+
 function print_dice() {
     case $1 in
         1)
-            echo "┌───────┐"
-            echo "│       │"
-            echo "│   •   │"
-            echo "│       │"
-            echo "└───────┘"
+            echo "┌───────┐
+│.......│
+│...●...│
+│.......│
+└───────┘"
             ;;
         2)
-            echo "┌───────┐"
-            echo "│ •     │"
-            echo "│       │"
-            echo "│     • │"
-            echo "└───────┘"
+            echo "┌───────┐
+│.●.....│
+│.......│
+│.....●.│
+└───────┘"
             ;;
         3)
-            echo "┌───────┐"
-            echo "│ •     │"
-            echo "│   •   │"
-            echo "│     • │"
-            echo "└───────┘"
+            echo "┌───────┐
+│.●.....│
+│...●...│
+│.....●.│
+└───────┘"
             ;;
         4)
-            echo "┌───────┐"
-            echo "│ •   • │"
-            echo "│       │"
-            echo "│ •   • │"
-            echo "└───────┘"
+            echo "┌───────┐
+│.●...●.│
+│.......│
+│.●...●.│
+└───────┘"
             ;;
         5)
-            echo "┌───────┐"
-            echo "│ •   • │"
-            echo "│   •   │"
-            echo "│ •   • │"
-            echo "└───────┘"
+            echo "┌───────┐
+│.●...●.│
+│...●...│
+│.●...●.│
+└───────┘"
             ;;
         6)
-            echo "┌───────┐"
-            echo "│ •   • │"
-            echo "│ •   • │"
-            echo "│ •   • │"
-            echo "└───────┘"
+            echo "┌───────┐
+│.●...●.│
+│.●...●.│
+│.●...●.│
+└───────┘"
             ;;
     esac
 }
 
 
 
+
 # Welcome screen
 dialog --title "🎮 Welcome!" --msgbox "🚩🚩🚩 Hill Climb Fall 🚩🚩🚩\n\nPress OK to start the game!" 10 40
+
+# Get Player A's Name
+A=$(dialog --title "Enter Player A's Name" --inputbox "🎮 Enter name for Player A:" 10 40 3>&1 1>&2 2>&3)
+
+# Get Player B's Name
+B=$(dialog --title "Enter Player B's Name" --inputbox "🎮 Enter name for Player B:" 10 40 3>&1 1>&2 2>&3)
+
+
 
 # Toss to decide who starts
 while true; do
@@ -81,14 +90,14 @@ while true; do
 done
 
 if (( toss % 2 == 0 )); then
-    starter="A"
+    starter=$A
     i=0
 else
-    starter="B"
+    starter=$B
     i=1
 fi
 
-dialog --title "🎲 Coin Toss Result" --msgbox "Toss result: $toss\n\n$starter starts the game!" 10 40
+dialog --title "🎲 Coin Toss Result" --msgbox "Toss result: \n\n$starter starts the game!" 10 40
 
 # Initialize player positions
 declare -a a=()
@@ -105,20 +114,20 @@ echo "Game Start - $(date)" > $log_file
 # Main game loop
 while (( sum_a != 10 && sum_b != 10 )); do
     if (( i % 2 == 0 )); then
-        player="A"
+        player=$A
         sum_val=$sum_a
     else
-        player="B"
+        player=$B
         sum_val=$sum_b
     fi
 
-    ch=$(dialog --title "🎮 $player's Turn - Hill Climb Fall" --inputbox "📊 **Game Status:**\n\nPlayer A: $sum_a\nPlayer B: $sum_b\n\n🎲 $player's Turn!\nEnter 'p' to roll the dice:" 15 50 3>&1 1>&2 2>&3)
+    ch=$(dialog --title "🎮 $player's Turn - Hill Climb Fall" --inputbox "📊 **Game Status:**\n\nPlayer $A: $sum_a\nPlayer $B: $sum_b\n\n🎲 $player's Turn!\nEnter 'p' to roll the dice:" 15 50 3>&1 1>&2 2>&3)
     
     if [[ "$ch" == "p" ]]; then
         throw=$(roll_dice)
 
         # Store dice roll
-        if [[ "$player" == "A" ]]; then
+        if [[ "$player" == "$A" ]]; then
             a+=($throw)
             sum_a=$(sum_array "${a[@]}")
         else
@@ -126,22 +135,28 @@ while (( sum_a != 10 && sum_b != 10 )); do
             sum_b=$(sum_array "${b[@]}")
         fi
         
-        dice_face=$(print_dice $throw)
-        dialog --title "🎲 Dice Roll" --msgbox "$player rolled a $throw!\n\n$dice_face\n\nCurrent Position:\nA: $sum_a\nB: $sum_b" 15 40
-        
+
+	echo -e $(print_dice $throw)
+
+	dice_face=$(print_dice $throw)
+
+	dialog --title "🎲 Dice Roll" --msgbox "$(printf "\n  $player rolled a $throw!  \n\n%s\n\nCurrent Position:\n  A: $sum_a\n  B: $sum_b\n" "$dice_face")" 20 40
+
+
+
         # Check if the player overshot 10
-        if [[ "$player" == "A" && $sum_a -gt 10 ]]; then
-            dialog --title "Oops! 🔄" --msgbox "Player A exceeded 10! Resetting to 0." 10 40
+        if [[ "$player" == "$A" && $sum_a -gt 10 ]]; then
+            dialog --title "Oops! 🔄" --msgbox "Player $A exceeded 10! Resetting to 0." 10 40
             a=()
             sum_a=0
-        elif [[ "$player" == "B" && $sum_b -gt 10 ]]; then
-            dialog --title "Oops! 🔄" --msgbox "Player B exceeded 10! Resetting to 0." 10 40
+        elif [[ "$player" == "$B" && $sum_b -gt 10 ]]; then
+            dialog --title "Oops! 🔄" --msgbox "Player $B exceeded 10! Resetting to 0." 10 40
             b=()
             sum_b=0
         fi
 
 	 # Save the status to the log file
-        echo "Player $player rolled $throw | A: $sum_a | B: $sum_b" >> $log_file
+        echo "Player $player rolled $throw | $A: $sum_a | $B: $sum_b" >> $log_file
 
         ((i += 1))
     fi
@@ -150,11 +165,11 @@ done
 
 # Declare winner
 if ((sum_a == 10)); then
-    dialog --title "🎉 Winner!" --msgbox "🏆 Player A wins! 🏆" 10 40
-    echo "🏆 Player A wins!" >> $log_file
+    dialog --title "🎉 Winner!" --msgbox "🏆 Player $A wins! 🏆" 10 40
+    echo "🏆 Player $A wins!" >> $log_file
 else
-    dialog --title "🎉 Winner!" --msgbox "🏆 Player B wins! 🏆" 10 40
-    echo "🏆 Player B wins!" >> $log_file
+    dialog --title "🎉 Winner!" --msgbox "🏆 Player $B wins! 🏆" 10 40
+    echo "🏆 Player $B wins!" >> $log_file
 fi
 
-dialog --title "📜 Game Summary" --textbox "$log_file" 15 50
+dialog --title "📜 Game Summary" --textbox "$log_file" 15 80

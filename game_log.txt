@@ -1,32 +1,9 @@
-Game Start - Tue Mar 25 12:50:34 UTC 2025
-Player A rolled 4 | A: 4 | B: 0
-Player B rolled 1 | A: 4 | B: 1
-Player A rolled 1 | A: 5 | B: 1
-Player B rolled 5 | A: 5 | B: 6
-Player A rolled 4 | A: 9 | B: 6
-Player B rolled 2 | A: 9 | B: 8
-Player A rolled 6 | A: 0 | B: 8
-Player B rolled 3 | A: 0 | B: 0
-Player A rolled 2 | A: 2 | B: 0
-Player B rolled 3 | A: 2 | B: 3
-Player A rolled 5 | A: 7 | B: 3
-Player B rolled 6 | A: 7 | B: 9
-Player A rolled 6 | A: 0 | B: 9
-Player B rolled 6 | A: 0 | B: 0
-Player A rolled 2 | A: 2 | B: 0
-Player B rolled 4 | A: 2 | B: 4
-Player A rolled 3 | A: 5 | B: 4
-Player B rolled 5 | A: 5 | B: 9
-Player A rolled 6 | A: 0 | B: 9
-Player B rolled 2 | A: 0 | B: 0
-Player A rolled 2 | A: 2 | B: 0
-Player B rolled 6 | A: 2 | B: 6
-Player A rolled 4 | A: 6 | B: 6
-Player B rolled 6 | A: 6 | B: 0
-Player A rolled 2 | A: 8 | B: 0
-Player B rolled 2 | A: 8 | B: 2
-Player A rolled 6 | A: 0 | B: 2
-Player B rolled 6 | A: 0 | B: 8
-Player A rolled 1 | A: 1 | B: 8
-Player B rolled 2 | A: 1 | B: 10
-🏆 Player B wins!
+Game Start - Wed Mar 26 11:18:31 UTC 2025
+Player a rolled 5 | a: 5 | b: 0
+Player b rolled 5 | a: 5 | b: 5
+Player a rolled 4 | a: 9 | b: 5
+Player b rolled 3 | a: 9 | b: 8
+Player a rolled 6 | a: 0 | b: 8
+Player b rolled 5 | a: 0 | b: 0
+Player a rolled 3 | a: 3 | b: 0
+Player b rolled 2 | a: 3 | b: 2
