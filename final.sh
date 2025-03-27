@@ -15,12 +15,6 @@ function sum_array() {
     echo $sum_arr
 }
 
-function game_over(){
-	if [[ $? -eq 1 ]]; then
-		dialog --msgbox "\n\n\n-------------Game Over-------------" 10 40
-    		exit 0  
-	fi
-}
 
 
 function print_dice() {
@@ -179,7 +173,7 @@ while (( sum_a != 10 && sum_b != 10 )); do
 
     dice_face=$(print_dice $throw)
 
-    dialog --title "🎲 Dice Roll" --msgbox "$(printf "\n  $player rolled a $throw!  \n\n%s\n\nCurrent Position:\n  A: $sum_a\n  B: $sum_b\n" "$dice_face")" 20 40
+    dialog --title "🎲 Dice Roll" --msgbox "$(printf "\n  $player rolled a $throw!  \n\n%s\n\nCurrent Position:\n  $A: $sum_a\n  $B: $sum_b\n" "$dice_face")" 20 40
 
 
 

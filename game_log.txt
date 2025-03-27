@@ -1,5 +1,21 @@
-Game Start - Thu Mar 27 09:41:29 UTC 2025
-Player as rolled 6 | as: 6 | CPU: 0
-Player CPU rolled 2 | as: 6 | CPU: 2
-Player as rolled 4 | as: 10 | CPU: 2
-🏆 Player as wins!
+Game Start - Thu Mar 27 14:30:05 UTC 2025
+Player Bablu rolled 6 | Bablu: 6 | Bhaskar: 0
+Player Bhaskar rolled 6 | Bablu: 6 | Bhaskar: 6
+Player Bablu rolled 2 | Bablu: 8 | Bhaskar: 6
+Player Bhaskar rolled 1 | Bablu: 8 | Bhaskar: 7
+Player Bablu rolled 4 | Bablu: 0 | Bhaskar: 7
+Player Bhaskar rolled 2 | Bablu: 0 | Bhaskar: 9
+Player Bablu rolled 5 | Bablu: 5 | Bhaskar: 9
+Player Bhaskar rolled 2 | Bablu: 5 | Bhaskar: 0
+Player Bablu rolled 6 | Bablu: 0 | Bhaskar: 0
+Player Bhaskar rolled 1 | Bablu: 0 | Bhaskar: 1
+Player Bablu rolled 5 | Bablu: 5 | Bhaskar: 1
+Player Bhaskar rolled 3 | Bablu: 5 | Bhaskar: 4
+Player Bablu rolled 6 | Bablu: 0 | Bhaskar: 4
+Player Bhaskar rolled 2 | Bablu: 0 | Bhaskar: 6
+Player Bablu rolled 2 | Bablu: 2 | Bhaskar: 6
+Player Bhaskar rolled 5 | Bablu: 2 | Bhaskar: 0
+Player Bablu rolled 6 | Bablu: 8 | Bhaskar: 0
+Player Bhaskar rolled 2 | Bablu: 8 | Bhaskar: 2
+Player Bablu rolled 2 | Bablu: 10 | Bhaskar: 2
+🏆 Player Bablu wins!
