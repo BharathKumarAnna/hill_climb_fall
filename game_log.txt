@@ -1,7 +1,5 @@
-Game Start - Wed Mar 26 16:09:13 UTC 2025
-Player CPU rolled 4 | Bhaskar: 0 | CPU: 4
-Player Bhaskar rolled 4 | Bhaskar: 4 | CPU: 4
-Player CPU rolled 3 | Bhaskar: 4 | CPU: 7
-Player Bhaskar rolled 2 | Bhaskar: 6 | CPU: 7
-Player CPU rolled 3 | Bhaskar: 6 | CPU: 10
-🏆 Player CPU wins!
+Game Start - Thu Mar 27 09:41:29 UTC 2025
+Player as rolled 6 | as: 6 | CPU: 0
+Player CPU rolled 2 | as: 6 | CPU: 2
+Player as rolled 4 | as: 10 | CPU: 2
+🏆 Player as wins!

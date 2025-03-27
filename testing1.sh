@@ -15,7 +15,12 @@ function sum_array() {
     echo $sum_arr
 }
 
-
+function game_over(){
+	if [[ $? -eq 1 ]]; then
+		dialog --msgbox "\n\n\n-------------Game Over-------------" 10 40
+    		exit 0  
+	fi
+}
 
 
 function print_dice() {
@@ -68,8 +73,16 @@ function print_dice() {
 
 
 
+hill="............................................._⛳_
+.........................................___|...|
+.....................................___|.......|
+................................____|...........|
+...........................____|................|
+..........................|_____________________|"
+
+
 # Welcome screen
-dialog --title "🎮 Welcome!" --msgbox "🚩🚩🚩 Hill Climb Fall 🚩🚩🚩\n\nPress OK to start the game!" 10 40
+dialog --title "🎮 Welcome!" --msgbox "       	 			🚩🚩🚩 Hill Climb Fall 🚩🚩🚩\n\n$hill \n\n       					Press OK to start the game!" 15 60
 
 # Choose game mode
 MODE=$(dialog --title "Choose Game Mode" --menu "Select mode:" 10 40 2 \
@@ -80,9 +93,12 @@ MODE=$(dialog --title "Choose Game Mode" --menu "Select mode:" 10 40 2 \
 # Get Player A's Name
 A=$(dialog --title "Enter Player A's Name" --inputbox "🎮 Enter name for Player A:" 10 40 3>&1 1>&2 2>&3)
 
+
+
 if [[ "$MODE" == "1" ]]; then
     # Two Player Mode - Get Player B's Name
     B=$(dialog --title "Enter Player B's Name" --inputbox "🎮 Enter name for Player B:" 10 40 3>&1 1>&2 2>&3)
+   
 else
     # Single Player Mode - Player B is CPU
     B="CPU"
@@ -92,6 +108,7 @@ fi
 # Toss to decide who starts
 while true; do
     toss_choice=$(dialog --title "🎲 Coin Toss" --inputbox "Press 'f' to flip the coin:" 10 40 3>&1 1>&2 2>&3)
+
     if [[ "$toss_choice" == "f" ]]; then
         toss=$(roll_dice)
         break
@@ -141,7 +158,7 @@ while (( sum_a != 10 && sum_b != 10 )); do
         dialog --title "🎮 CPU's Turn" --msgbox "🤖 CPU is rolling the dice..." 10 40
     else
         ch=$(dialog --title "🎮 $player's Turn - Hill Climb Fall" --inputbox "📊 **Game Status:**\n\nPlayer $A: $sum_a\nPlayer $B: $sum_b\n\n🎲 $player's Turn!\nEnter 'p' to roll the dice:" 15 50 3>&1 1>&2 2>&3)
-        if [[ "$ch" == "p" ]]; then
+	if [[ "$ch" == "p" ]]; then
             throw=$(roll_dice)
         else
             continue
