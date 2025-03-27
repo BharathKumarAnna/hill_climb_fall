@@ -15,12 +15,6 @@ function sum_array() {
     echo $sum_arr
 }
 
-function game_over(){
-	if [[ $? -eq 1 ]]; then
-		dialog --msgbox "\n\n\n-------------Game Over-------------" 10 40
-    		exit 0  
-	fi
-}
 
 
 function print_dice() {
