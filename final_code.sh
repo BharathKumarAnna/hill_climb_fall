@@ -173,7 +173,7 @@ while (( sum_a != 10 && sum_b != 10 )); do
 
     dice_face=$(print_dice $throw)
 
-    dialog --title "🎲 Dice Roll" --msgbox "$(printf "\n  $player rolled a $throw!  \n\n%s\n\nCurrent Position:\n  A: $sum_a\n  B: $sum_b\n" "$dice_face")" 20 40
+    dialog --title "🎲 Dice Roll" --msgbox "$(printf "\n  $player rolled a $throw!  \n\n%s\n\nCurrent Position:\n  $A: $sum_a\n  $B: $sum_b\n" "$dice_face")" 20 40
 
 
 
